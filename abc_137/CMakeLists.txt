@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.1)
+project(abc_137)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
+
+add_executable(abc137_a abc137_a.cpp)
+add_executable(abc137_b abc137_b.cpp)
+add_executable(abc137_c abc137_c.cpp)
+add_executable(abc137_d abc137_d.cpp)
+add_executable(abc137_e abc137_e.cpp)
+add_executable(abc137_f abc137_f.cpp)
