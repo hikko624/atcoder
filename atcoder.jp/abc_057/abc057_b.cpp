@@ -58,15 +58,21 @@ Def inf = sizeof(Def) == sizeof(long long) ? 2e18 : 1e9 + 10;
 int dx[] = {0, 1, 0, -1};
 int dy[] = {1, 0, -1, 0};
 int main(int argc, char *argv[]) {
-  int n, m;
+  int n, m, current, nmin, ans;
   cin >> n >> m;
   int a[n], b[n], c[m], d[m];
   rep(i, n) cin >> a[i] >> b[i];
   rep(i, m) cin >> c[i] >> d[i];
-  rep(i,n) {
-    rep(j,m) {
-
+  rep(i, n) {
+    nmin = inf;
+    rep(j, m) {
+      current = abs(a[i] - c[j]) + abs(b[i] - d[j]);
+      if (current < nmin) {
+        nmin = current;
+        ans = j;
+      }
     }
+    cout << ans + 1 << endl;
   }
   return 0;
 }
