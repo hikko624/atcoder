@@ -1,4 +1,4 @@
-// abc146_b
+// abc060_b
 #include<iostream>
 #include<vector>
 #include<string>
@@ -48,6 +48,15 @@ int dx[]={0,1,0,-1};
 int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
+  int a,b,c;
+  cin>>a>>b>>c;
 
+  for(int i=1;i<=a*b;++i){
+    if (a*i%b == c) {
+      cout << "YES" << endl;
+      return 0;
+    }
+  }
+  cout << "NO" << endl;
   return 0;
 }
