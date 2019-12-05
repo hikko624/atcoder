@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.1)
+project(sumitrust_2019)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
+
+add_executable(sumitrust2019_a sumitrust2019_a.cpp)
+add_executable(sumitrust2019_b sumitrust2019_b.cpp)
+add_executable(sumitrust2019_c sumitrust2019_c.cpp)
+add_executable(sumitrust2019_d sumitrust2019_d.cpp)
+add_executable(sumitrust2019_e sumitrust2019_e.cpp)
+add_executable(sumitrust2019_f sumitrust2019_f.cpp)

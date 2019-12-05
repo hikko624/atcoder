@@ -1,4 +1,4 @@
-// abc060_b
+// agc015_a
 #include <algorithm>
 #include <assert.h>
 #include <bitset>
@@ -58,15 +58,28 @@ Def inf = sizeof(Def) == sizeof(long long) ? 2e18 : 1e9 + 10;
 int dx[] = {0, 1, 0, -1};
 int dy[] = {1, 0, -1, 0};
 int main(int argc, char *argv[]) {
-  int a, b, c;
-  cin >> a >> b >> c;
+  ll n, a, b, asum, bsum;
+  cin >> n >> a >> b;
 
-  for (int i = 1; i <= a * b; ++i) {
-    if (a * i % b == c) {
-      cout << "YES" << endl;
-      return 0;
-    }
+  if ((n == 1 && a != b) || a > b) {
+    cout << 0 << endl;
+    return 0;
   }
-  cout << "NO" << endl;
+
+  if (n == 1 && a == b) {
+    cout << 1 << endl;
+    return 0;
+  }
+
+  asum = b;
+  bsum = a;
+
+  rep(i, n - 1) {
+    asum += a;
+    bsum += b;
+  }
+
+  cout << bsum - asum + 1 << endl;
+
   return 0;
 }
