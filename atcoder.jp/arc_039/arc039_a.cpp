@@ -1,4 +1,4 @@
-// abc147_b
+// arc039_a
 #include<iostream>
 #include<vector>
 #include<string>
@@ -48,12 +48,14 @@ int dx[]={0,1,0,-1};
 int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
-  string s;
-  int cnt = 0;
-  cin >> s;
-  for (int i=0,j=(int)s.size()-1; i<(int)s.size()/2; ++i, --j) {
-    if(s[i] != s[j]) cnt++;
-  }
-  cout << cnt << endl;
+  int a,b,amax,bmin;
+  cin>>a>>b;
+  if(a<900) amax=900+a%100;
+  else if(a<990) amax=990+a%10;
+  else amax=999;
+  if(b>=200)  bmin=100+b%100;
+  else if(b>=110) bmin=100+b%10;
+  else bmin=100;
+  cout << max(amax-b,a-bmin) << endl;
   return 0;
 }

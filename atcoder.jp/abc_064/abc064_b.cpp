@@ -1,4 +1,4 @@
-// abc147_b
+// abc064_b
 #include<iostream>
 #include<vector>
 #include<string>
@@ -48,12 +48,13 @@ int dx[]={0,1,0,-1};
 int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
-  string s;
-  int cnt = 0;
-  cin >> s;
-  for (int i=0,j=(int)s.size()-1; i<(int)s.size()/2; ++i, --j) {
-    if(s[i] != s[j]) cnt++;
-  }
-  cout << cnt << endl;
+  int n;
+  cin>>n;
+  vi a(n);
+  rep(i, n)
+    cin>>a.at(i);
+
+  sort(a.begin(),a.end());
+  cout << a.at(n-1)-a.at(0) << endl;
   return 0;
 }
