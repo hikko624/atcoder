@@ -1,4 +1,4 @@
-// abc073_b
+// abc070_b
 #include<iostream>
 #include<vector>
 #include<string>
@@ -48,13 +48,13 @@ int dx[]={0,1,0,-1};
 int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
-  int n,l,r;
-  ll ans=0;
-  cin>>n;
-  rep(i,n){
-    cin>>l>>r;
-    ans+=r-l+1;
+  int a,b,c,d,ans;
+  cin>>a>>b>>c>>d;
+  ans=min(b,d)-max(a,c);
+  if (ans>0) {
+    cout<<ans<<endl;
+  }else{
+    cout<<0<<endl;
   }
-  cout<<ans<<endl;
   return 0;
 }

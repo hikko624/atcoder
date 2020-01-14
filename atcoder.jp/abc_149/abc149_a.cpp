@@ -1,4 +1,4 @@
-// abc073_b
+// abc149_a
 #include<iostream>
 #include<vector>
 #include<string>
@@ -48,13 +48,8 @@ int dx[]={0,1,0,-1};
 int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
-  int n,l,r;
-  ll ans=0;
-  cin>>n;
-  rep(i,n){
-    cin>>l>>r;
-    ans+=r-l+1;
-  }
-  cout<<ans<<endl;
+  string s,t;
+  cin>>s>>t;
+  cout<<t<<s<<endl;
   return 0;
 }
