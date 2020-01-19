@@ -1,4 +1,4 @@
-// abc075_b
+// abc086_b
 #include<iostream>
 #include<vector>
 #include<string>
@@ -44,32 +44,25 @@ template<typename A,typename B>bool cmax(A &a,const B &b){return a<b?(a=b,true):
 const double PI=acos(-1);
 const double EPS=1e-9;
 Def inf = sizeof(Def) == sizeof(long long) ? 2e18 : 1e9+10;
-int dx[]={0,1,0,-1,1,1,-1,-1};
-int dy[]={1,0,-1,0,1,-1,1,-1};
+int dx[]={0,1,0,-1};
+int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
-  int h,w,cnt;
-  cin>>h>>w;
-  vector<string> s(h);
-  rep(i,h){
-    cin>>s.at(i);
+  int a,b,n;
+  cin>>a>>b;
+  if(b==100) {
+    n=a*1000+b;
+  } else if(b<100&&b>=10){
+    n=a*100+b;
+  }else{
+    n=a*10+b;
   }
-  for(int i=0;i<h;++i){
-    for(int j=0;j<w;++j){
-      if(s.at(i)[j]=='#') {
-        continue;
-      } else {
-        cnt=0;
-        rep(k,8){
-          if (j+dx[k]<0||j+dx[k]>=w) continue;
-          if (i+dy[k]<0||i+dy[k]>=h) continue;
-          if(s.at(i+dy[k])[j+dx[k]]=='#') cnt++;
-        }
-        s.at(i)[j]=char(cnt+'0');
-      }
+  for(int i=1;i<=1000;++i){
+    if (i*i==n) {
+      cout<<"Yes"<<endl;
+      return 0;
     }
   }
-  rep(i,h)
-    cout<<s.at(i)<<endl;
+  cout<<"No"<<endl;
   return 0;
 }
