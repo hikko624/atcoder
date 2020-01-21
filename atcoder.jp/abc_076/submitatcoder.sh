@@ -8,7 +8,7 @@ fi
 # echo ${filename%.*}
 # echo ${filename%_*}
 echo "compile ${filename}..."
-g++-8 -std=c++14 -Wall -O2 ${filename}
+g++-9 -std=c++14 -Wall -O2 ${filename}
 # debug
 # g++-8 -std=c++14 -Wall -g -fsanitize=undefined -D_GLIBCXX_DEBUG ${filename}
 if [ -e test ]
