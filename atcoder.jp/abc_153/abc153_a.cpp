@@ -1,4 +1,4 @@
-// abc078_b
+// abc153_a
 #include<iostream>
 #include<vector>
 #include<string>
@@ -48,8 +48,12 @@ int dx[]={0,1,0,-1};
 int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
-  int x,y,z;
-  cin>>x>>y>>z;
-  cout<<(x-z)/(y+z)<<endl;
+  int h,a;
+  cin>>h>>a;
+  if (h%a==0){
+    cout<<h/a<<endl;
+  }else{
+    cout<<h/a+1<<endl;
+  }
   return 0;
 }
