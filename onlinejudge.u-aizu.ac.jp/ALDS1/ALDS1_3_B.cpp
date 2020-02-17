@@ -1,4 +1,4 @@
-// abc087_b
+#include <deque>
 #include<iostream>
 #include<vector>
 #include<string>
@@ -45,18 +45,31 @@ const double PI=acos(-1);
 const double EPS=1e-9;
 Def inf = sizeof(Def) == sizeof(long long) ? 2e18 : 1e9+10;
 int dx[]={0,1,0,-1};
-int dy[]={1,0,-1,0};
+int dy[] = {1, 0, -1, 0};
+
 int main(int argc, char *argv[])
 {
-  int a,b,c,x,ans=0;
-  cin>>a>>b>>c>>x;
-  for(int i=0;i<=a;++i) {
-    for(int j=0;j<=b;++j) {
-      for(int k=0;k<=c;++k) {
-        if(500*i+100*j+50*k==x)ans++;
-      }
-    }
+  int n,q,time;
+  ll cnt_t=0;
+  string name;
+  deque<pair<string, int>> dq;
+  pair<string, int> c;
+  cin>>n>>q;
+  rep(i,n){
+    cin>>name>>time;
+    dq.emplace_back(name,time);
   }
-  cout<<ans<<endl;
+  while(!dq.empty()){
+    c = dq.front();
+    dq.pop_front();
+    cnt_t+=min(c.second,q);
+    c.second-=q;
+    if(c.second>0) {
+      dq.push_back(c);
+    } else {
+      cout<<c.first<<" "<<cnt_t<<endl;
+    }
+
+  }
   return 0;
 }

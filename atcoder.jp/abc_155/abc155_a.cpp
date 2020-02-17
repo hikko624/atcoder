@@ -1,4 +1,4 @@
-// abc087_b
+// abc155_a
 #include<iostream>
 #include<vector>
 #include<string>
@@ -48,15 +48,12 @@ int dx[]={0,1,0,-1};
 int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
-  int a,b,c,x,ans=0;
-  cin>>a>>b>>c>>x;
-  for(int i=0;i<=a;++i) {
-    for(int j=0;j<=b;++j) {
-      for(int k=0;k<=c;++k) {
-        if(500*i+100*j+50*k==x)ans++;
-      }
-    }
+  int a,b,c;
+  cin>>a>>b>>c;
+  if ((a==b&&b==c)||(a!=b&&b!=c&&c!=a)){
+    cout<<"No"<<endl;
+  } else {
+    cout<<"Yes"<<endl;
   }
-  cout<<ans<<endl;
   return 0;
 }
