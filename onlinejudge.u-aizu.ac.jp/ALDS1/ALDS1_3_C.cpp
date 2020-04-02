@@ -17,7 +17,8 @@
 #include<sstream>
 #include<iomanip>
 #include<assert.h>
-#include<typeinfo>
+#include <typeinfo>
+#include <list>
 #define loop(i,a,b) for(int i=a;i<b;i++)
 #define rep(i,a) loop(i,0,a)
 #define FOR(i,a) for(auto i:a)
@@ -46,19 +47,38 @@ const double EPS=1e-9;
 Def inf = sizeof(Def) == sizeof(long long) ? 2e18 : 1e9+10;
 int dx[]={0,1,0,-1};
 int dy[] = {1, 0, -1, 0};
-class Node {
-public:
-  unsigned int key;
-  Node *next;
-  Node *prev;
-  void deleteKey();
-  void deleteFirst();
-  void deleteLast();
-  void inserttKey();
-};
 
 int main(int argc, char *argv[])
 {
-
+  int n,x;
+  cin>>n;
+  list<int> l;
+  string cmd;
+  for (int i=0; i<n; ++i) {
+    cin>>cmd;
+    if (cmd=="insert") {
+      cin>>x;
+      l.push_front(x);
+    } else if (cmd=="delete") {
+      cin>>x;
+      for (auto it=l.begin(); it!=l.end(); ++it) {
+        if (*it == x) {
+          l.erase(it);
+          break;
+        }
+      }
+    } else if (cmd=="deleteFirst") {
+      l.pop_front();
+    } else if (cmd=="deleteLast") {
+      l.pop_back();
+    }
+  }
+  for (auto it=l.begin(); it!=l.end(); ++it) {
+    if (it!=l.begin()) {
+      cout<<" ";
+    }
+    cout<<*it;
+  }
+  cout<<endl;
   return 0;
 }

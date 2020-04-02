@@ -50,12 +50,38 @@ int main(int argc, char *argv[])
   stack<int> s1;
   stack< pair<int, int> > s2;
   string s;
+  int sum=0;
   cin >> s;
   rep(i, s.size()) {
     if(s[i]=='\\') {
       s1.push(i);
     }
-    else if(c == '/' && !)
+    else if(s[i] == '/' && s1.size() > 0) {
+      int j = s1.top();
+      int a = i-j;
+      sum+=i-j;
+      s1.pop();
+      // 各水たまりの面積を保存している
+      while(s2.size()>0&&s2.top().first>j) {
+        a+=s2.top().second;
+        s2.pop();
+      }
+      s2.push(make_pair(j,a));
+    }
   }
+
+  cout<<sum<<endl;
+  cout<<s2.size();
+  vector<int> ans;
+  for (int i=0, s2_size=s2.size();i<s2_size;++i) {
+    ans.push_back(s2.top().second);
+    s2.pop();
+  }
+  reverse(ans.begin(), ans.end());
+  for (int i=0, ans_size=ans.size();i<ans_size;++i) {
+    cout<<" ";
+    cout<<ans.at(i);
+  }
+  cout<<endl;
   return 0;
 }
