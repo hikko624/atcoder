@@ -1,4 +1,4 @@
-// abc105_b
+// abc160_a
 #include<iostream>
 #include<vector>
 #include<string>
@@ -48,17 +48,12 @@ int dx[]={0,1,0,-1};
 int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
-  int n;
-  cin>>n;
-  for(int i=0;i<=100;++i){
-    for(int j=0;j<=100;++j){
-      if(4*i+7*j==n) {
-        cout<<"Yes"<<endl;
-        return 0;;
-      }
-    }
+  string s;
+  cin>>s;
+  if(s[2]==s[3]&&s[4]==s[5]){
+    cout<<"Yes"<<endl;
+  } else {
+    cout<<"No"<<endl;
   }
-
-  cout<<"No"<<endl;
   return 0;
 }

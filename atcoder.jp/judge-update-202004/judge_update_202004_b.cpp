@@ -1,4 +1,3 @@
-// abc105_b
 #include<iostream>
 #include<vector>
 #include<string>
@@ -48,17 +47,26 @@ int dx[]={0,1,0,-1};
 int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
-  int n;
+  int n,x;
   cin>>n;
-  for(int i=0;i<=100;++i){
-    for(int j=0;j<=100;++j){
-      if(4*i+7*j==n) {
-        cout<<"Yes"<<endl;
-        return 0;;
-      }
+  char c;
+  vector<int> r_x,b_x;
+  rep(i,n){
+    cin>>x>>c;
+    if (c == 'R') {
+      r_x.push_back(x);
+    } else {
+      b_x.push_back(x);
     }
   }
+  sort(all(r_x));
+  sort(all(b_x));
 
-  cout<<"No"<<endl;
+  for (int x : r_x) {
+    cout<<x<<endl;
+  }
+  for (int x : b_x) {
+    cout<<x<<endl;
+  }
   return 0;
 }
