@@ -1,4 +1,4 @@
-// abc124_b
+// abc164_a
 #include<iostream>
 #include<vector>
 #include<string>
@@ -48,16 +48,8 @@ int dx[]={0,1,0,-1};
 int dy[]={1,0,-1,0};
 int main(int argc, char *argv[])
 {
-  int n,maxH,h,cnt=1;
-  cin>>n;
-  cin>>maxH;
-  rep(i,n-1){
-    cin>>h;
-    if (maxH<=h) {
-      maxH=h;
-      cnt++;
-    }
-  }
-  cout<<cnt<<endl;
+  int s,w;
+  cin>>s>>w;
+  cout<<((s>w) ? "safe" : "unsafe")<<endl;
   return 0;
 }

@@ -1,4 +1,3 @@
-// abc039_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -65,31 +64,29 @@ const double EPS = 1e-9;
 int inf = sizeof(int) == sizeof(long long) ? 2e18 : 1e9 + 10;
 int dx[] = {0, 1, 0, -1};
 int dy[] = {1, 0, -1, 0};
-template <class T> bool contain(const std::string &s, const T &v) {
-  return s.find(v) != std::string::npos;
-}
 #define rep(i, n) for (int i = 0; i < (n); ++i)
 using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main() {
-  string s;
-  cin >> s;
-  s = s.substr(0,12);
-  if (contain(s, "WBWBWWBWBWBW"))
-    cout << "Do" << endl;
-  else if (contain(s, "WBWWBWBWBWWB"))
-    cout << "Re" << endl;
-  else if (contain(s, "WWBWBWBWWBWB"))
-    cout << "Mi" << endl;
-  else if (contain(s, "WBWBWBWWBWBW"))
-    cout << "Fa" << endl;
-  else if (contain(s, "WBWBWWBWBWWB"))
-    cout << "So" << endl;
-  else if (contain(s, "WBWWBWBWWBWB"))
-    cout << "La" << endl;
-  else if (contain(s, "WWBWBWWBWBWB"))
-    cout << "Si" << endl;
+int main()
+{
+  int n,cnt=0;
+  string tmp,ans="";
+  cin>>n;
+  map<string, int> s;
+  rep(i,n){
+    cin>>tmp;
+    s[tmp]++;
+  }
+
+  for (auto i = s.begin(); i != s.end(); ++i) {
+    if (cnt<i->second) {
+      ans=i->first;
+      cnt=i->second;
+    }
+  }
+
+  cout<<ans<<endl;
   return 0;
 }
