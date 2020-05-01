@@ -1,4 +1,3 @@
-// abc139_b
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -72,15 +71,26 @@ using P = pair<int, int>;
 
 int main()
 {
-  int a,b,ans=0;
-  cin>>a>>b;
-  for(int i=0;;++i) {
-    if (b<=a*i-(i-1)) {
-      ans=i;
-      break;
-    }
+  string s,t="";
+  cin>>s;
+  // int sSize=(int)s.size(), index=0,cnt=0;
+  // rep(i,sSize) {
+  //   if (s[index]==s[i]) {
+  //     cnt++;
+  //   } else {
+  //     cout<<s[index]<<cnt;
+  //     cnt=1;
+  //     index=i;
+  //   }
+  // }
+  // cout<<s[index]<<cnt<<endl;
+  int seek=0,n=s.size();
+  while(seek<n) {
+    int startPos=seek;
+    while (seek<n&&s[seek]==s[startPos]) seek++;
+    t+=s[startPos];
+    t+=to_string(seek-startPos);
   }
-
-  cout<<ans<<endl;
+  cout<<t<<endl;
   return 0;
 }
