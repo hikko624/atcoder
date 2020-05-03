@@ -1,4 +1,4 @@
-// abc165_c
+// abc166_a
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -72,6 +72,9 @@ using P = pair<int, int>;
 
 int main()
 {
-  int n,m,q;
+  string s;
+  cin>>s;
+  if (s=="ARC") cout<<"ABC"<<endl;
+  else cout<<"ARC"<<endl;
   return 0;
 }

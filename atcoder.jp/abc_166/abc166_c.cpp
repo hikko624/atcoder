@@ -1,4 +1,4 @@
-// abc165_c
+// abc166_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,8 +70,24 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main()
-{
-  int n,m,q;
+int main() {
+  int n, m, a, b, ans = 0;
+  cin >> n >> m;
+  vector<int> h(n+1),ma(n+1);
+  for (int i=1;i<=n;++i){
+    cin >> h.at(i);
+    ma.at(i)=0;
+  }
+  rep(i, m) {
+    cin >> a >> b;
+    ma.at(a)=max(ma.at(a),h.at(b));
+    ma.at(b)=max(ma.at(b),h.at(a));
+  }
+
+  for (int i=1;i<=n;++i){
+    ans+=h.at(i)>ma.at(i);
+  }
+
+  cout<<ans<<endl;
   return 0;
 }

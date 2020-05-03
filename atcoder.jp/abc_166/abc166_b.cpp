@@ -1,4 +1,4 @@
-// abc165_c
+// abc166_b
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -72,6 +72,16 @@ using P = pair<int, int>;
 
 int main()
 {
-  int n,m,q;
+  int n,k,d,a;
+  set<int> ans;
+  cin>>n>>k;
+  rep(i,k){
+    cin>>d;
+    rep(j,d){
+      cin>>a;
+      ans.insert(a);
+    }
+  }
+  cout<<n-ans.size()<<endl;
   return 0;
 }

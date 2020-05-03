@@ -1,4 +1,4 @@
-// abc165_c
+// abc166_d
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -72,6 +72,8 @@ using P = pair<int, int>;
 
 int main()
 {
-  int n,m,q;
+  int x;
+  cin>>x;
+  rep(i,1000000000)
   return 0;
 }
