@@ -74,6 +74,8 @@ int main()
 {
   int x;
   cin>>x;
-  rep(i,1000000000)
+  rep(i,1000000000) {
+
+  }
   return 0;
 }

@@ -52,8 +52,6 @@ int main(int argc, char *argv[])
   string s;
   cin>>n;
   vector<pair<string, int>> spv;
-  rep(i,n) {
 
-  }
   return 0;
 }
