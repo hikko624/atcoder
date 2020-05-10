@@ -1,4 +1,4 @@
-// abc158_b
+// abc167_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -71,11 +71,35 @@ using ll = long long;
 using P = pair<int, int>;
 
 int main() {
-  ll n, a, b, res, ans;
-  cin >> n >> a >> b;
-  ans = n / (a + b) * a;
-  res = n % (a + b);
-  ans += min(res, a);
-  cout << ans << endl;
+  int n, m, x, ans = inf;
+  cin >> n >> m >> x;
+  vector<int> c(n);
+  vector<vector<int>> a(n, vector<int>(m));
+
+  rep(i, n) {
+    cin >> c.at(i);
+    rep(j, m) { cin >> a.at(i).at(j); }
+  }
+
+  rep(s, 1 << n) {
+    int cost = 0;
+    bool check = true;
+    vector<int> d(m, 0);
+    rep(i, n) {
+      if (s >> i & 1) {
+        cost += c.at(i);
+        rep(j, m) d.at(j) += a.at(i).at(j);
+      }
+    }
+
+    rep(j, m) if (d.at(j) < x) check = false;
+    if (check)
+      ans = min(ans, cost);
+  }
+
+  if (ans == inf)
+    cout << -1 << endl;
+  else
+    cout << ans << endl;
   return 0;
 }

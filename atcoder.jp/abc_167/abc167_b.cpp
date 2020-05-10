@@ -1,4 +1,4 @@
-// abc158_b
+// abc167_b
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,12 +70,12 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main() {
-  ll n, a, b, res, ans;
-  cin >> n >> a >> b;
-  ans = n / (a + b) * a;
-  res = n % (a + b);
-  ans += min(res, a);
-  cout << ans << endl;
+int main()
+{
+  int a,b,c,k,ans=0;
+  cin>>a>>b>>c>>k;
+  ans+=min(k,a);
+  ans-=min(max(k-a-b,0),c);
+  cout<<ans<<endl;
   return 0;
 }

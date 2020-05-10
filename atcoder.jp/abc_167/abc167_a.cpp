@@ -1,4 +1,4 @@
-// abc158_b
+// abc167_a
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,12 +70,14 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main() {
-  ll n, a, b, res, ans;
-  cin >> n >> a >> b;
-  ans = n / (a + b) * a;
-  res = n % (a + b);
-  ans += min(res, a);
-  cout << ans << endl;
+int main()
+{
+  string s,t;
+  cin>>s>>t;
+  if (s==t.substr(0,(int)t.size()-1)) {
+    cout<<"Yes"<<endl;
+  } else {
+    cout<<"No"<<endl;
+  }
   return 0;
 }
