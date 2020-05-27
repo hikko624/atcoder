@@ -1,4 +1,3 @@
-// abc032_b
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -72,18 +71,15 @@ using P = pair<int, int>;
 
 int main()
 {
-  int k;
-  string s;
-  set<string> t;
-  cin>>s>>k;
-  if (s.size()<k) {
-    cout<<0<<endl;
-  } else {
-    for (int i=0;i<s.size()-(k-1);++i) {
-      t.insert(s.substr(i,k));
-    }
-    cout<<t.size()<<endl;
+  int n,x;
+  ll ans=0;
+  cin>>n>>x;
+  vector<int>a(n);
+  rep(i,n)cin>>a.at(i);
+  for (int i=0;i<n;++i) {
+    if (x%2!=0) ans+=a.at(i);
+    x = x>>1;
   }
-
+  cout<<ans<<endl;
   return 0;
 }

@@ -1,6 +1,7 @@
-// abc032_b
+// abc168_c
 #include <algorithm>
 #include <bitset>
+#include <cmath>
 #include <complex>
 #include <deque>
 #include <exception>
@@ -70,20 +71,14 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main()
-{
-  int k;
-  string s;
-  set<string> t;
-  cin>>s>>k;
-  if (s.size()<k) {
-    cout<<0<<endl;
-  } else {
-    for (int i=0;i<s.size()-(k-1);++i) {
-      t.insert(s.substr(i,k));
-    }
-    cout<<t.size()<<endl;
-  }
-
+int main() {
+  int a, b, h, m;
+  cin >> a >> b >> h >> m;
+  double radianM = (double)m / 60.0 * 2 * PI;
+  double radianH = (double)(h / 12.0 + m / 720.0) * 2 * PI;
+  double ans = (double)(a * a) + (double)(b * b) -
+               2.0 * (double)a * (double)b * cos(abs(radianH - radianM));
+  cout << fixed << setprecision(9);
+  cout << sqrt(ans) << endl;
   return 0;
 }

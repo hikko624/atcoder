@@ -1,4 +1,4 @@
-// abc032_b
+// abc085_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,20 +70,23 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main()
-{
-  int k;
-  string s;
-  set<string> t;
-  cin>>s>>k;
-  if (s.size()<k) {
-    cout<<0<<endl;
-  } else {
-    for (int i=0;i<s.size()-(k-1);++i) {
-      t.insert(s.substr(i,k));
+int main() {
+  int n, y;
+  bool ok = false;
+  cin >> n >> y;
+  int a, b, c;
+  for (int i = 0; i <= n; ++i) {
+    for (int j = 0; j <= n; ++j) {
+      int k = n - i - j;
+      if (y == 10000 * i + 5000 * j + 1000 * k && k >= 0) {
+        a = i, b = j, c = k;
+        ok = true;
+      }
     }
-    cout<<t.size()<<endl;
   }
-
+  if (ok)
+    cout << a << " " << b << " " << c << endl;
+  else
+    cout << -1 << " " << -1 << " " << -1 << endl;
   return 0;
 }

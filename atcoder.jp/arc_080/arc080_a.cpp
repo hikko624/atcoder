@@ -1,4 +1,4 @@
-// abc032_b
+// arc080_a
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -72,18 +72,8 @@ using P = pair<int, int>;
 
 int main()
 {
-  int k;
-  string s;
-  set<string> t;
-  cin>>s>>k;
-  if (s.size()<k) {
-    cout<<0<<endl;
-  } else {
-    for (int i=0;i<s.size()-(k-1);++i) {
-      t.insert(s.substr(i,k));
-    }
-    cout<<t.size()<<endl;
-  }
+  int n;
+  cin>>n;
 
   return 0;
 }

@@ -1,5 +1,6 @@
 // abc128_b
 #include<iostream>
+#include <iterator>
 #include<vector>
 #include<string>
 #include<algorithm>
@@ -51,7 +52,15 @@ int main(int argc, char *argv[])
   int n,p;
   string s;
   cin>>n;
-  vector<pair<string, int>> spv;
+  vector<pair<pair<string, int>, int> > spv;
+  for (int i=0;i<n;++i) {
+    cin>>s>>p;
+    spv.emplace_back(make_pair(s, -p), i);
+  }
+  sort(spv.begin(), spv.end());
+  for (auto x : spv) {
+    cout<<x.second+1<<endl;
+  }
 
   return 0;
 }

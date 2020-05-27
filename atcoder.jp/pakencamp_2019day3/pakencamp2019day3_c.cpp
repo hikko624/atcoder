@@ -1,4 +1,4 @@
-// abc032_b
+// pakencamp2019day3_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -72,18 +72,6 @@ using P = pair<int, int>;
 
 int main()
 {
-  int k;
-  string s;
-  set<string> t;
-  cin>>s>>k;
-  if (s.size()<k) {
-    cout<<0<<endl;
-  } else {
-    for (int i=0;i<s.size()-(k-1);++i) {
-      t.insert(s.substr(i,k));
-    }
-    cout<<t.size()<<endl;
-  }
 
   return 0;
 }
