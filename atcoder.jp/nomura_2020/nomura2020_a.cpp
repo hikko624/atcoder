@@ -1,4 +1,4 @@
-// pakencamp2019day3_c
+// nomura2020_a
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,27 +70,10 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main()
-{
-  int n,m;
-  ll ans=0;
-  cin>>n>>m;
-  vector<vector<int>> a(n, vector<int> (m));
-  rep(i,n) {
-    rep(j,m) {
-      cin>>a.at(i).at(j);
-    }
-  }
-  for (int i=0; i<m; ++i) {
-    ll now=0;
-    for (int j=0; j<n; ++j) {
-      for (int k=j+1; k<n; ++k) {
-        now+=max(a.at(j).at(i), a.at(k).at(i));
-      }
-    }
-    ans=max(ans,now);
-  }
+int main() {
+  int h1, m1, h2, m2, k;
+  cin >> h1 >> m1 >> h2 >> m2 >> k;
+  cout << (h2 - h1) * 60 + (m2 - m1) - k << endl;
 
-  cout<<ans<<endl;
   return 0;
 }

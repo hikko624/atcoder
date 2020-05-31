@@ -1,4 +1,4 @@
-// pakencamp2019day3_c
+// arc084_a
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -72,25 +72,26 @@ using P = pair<int, int>;
 
 int main()
 {
-  int n,m;
-  ll ans=0;
-  cin>>n>>m;
-  vector<vector<int>> a(n, vector<int> (m));
-  rep(i,n) {
-    rep(j,m) {
-      cin>>a.at(i).at(j);
-    }
-  }
-  for (int i=0; i<m; ++i) {
-    ll now=0;
-    for (int j=0; j<n; ++j) {
-      for (int k=j+1; k<n; ++k) {
-        now+=max(a.at(j).at(i), a.at(k).at(i));
-      }
-    }
-    ans=max(ans,now);
-  }
+  // int n;
+  // vector<int> a,b,c;
+  // cin>>n;
+  // a=b=c=vector<int>(n);
+  // for (int i=0;i<n;++i) {
 
-  cout<<ans<<endl;
+  // }
+  // 基本的な用途
+  // ソート済み範囲から、特定の値を二分探索で見つける
+  {
+    std::vector<int> v = {3, 1, 4, 6, 5};
+    std::sort(v.begin(), v.end());
+
+    // 二分探索で値4を検索
+    decltype(v)::iterator it = std::lower_bound(v.begin(), v.end(), 6);
+    if (it != v.end() && *it == 4) { // lower_boundでは4"以上"の値が見つかるので、
+                                     // 値4を見つけたいなら検索結果の値を比較する必要がある
+      std::size_t pos = std::distance(v.begin(), it);
+      std::cout << *it << " pos=" << pos << std::endl;
+    }
+  }
   return 0;
 }

@@ -1,4 +1,4 @@
-// pakencamp2019day3_c
+// abc169_b
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,27 +70,28 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main()
-{
-  int n,m;
-  ll ans=0;
-  cin>>n>>m;
-  vector<vector<int>> a(n, vector<int> (m));
-  rep(i,n) {
-    rep(j,m) {
-      cin>>a.at(i).at(j);
-    }
+int main() {
+  int n;
+  ll ans = 1;
+  cin >> n;
+  vector<ll> a(n);
+  rep(i, n) { cin >> a.at(i); }
+  sort(a.begin(), a.end());
+  if (a.front() == 0) {
+    cout<<0<<endl;
+    return 0;
   }
-  for (int i=0; i<m; ++i) {
-    ll now=0;
-    for (int j=0; j<n; ++j) {
-      for (int k=j+1; k<n; ++k) {
-        now+=max(a.at(j).at(i), a.at(k).at(i));
-      }
+  ll limit = 1e18;
+
+  rep(i, n) {
+    if (limit / ans < a.at(i)) {
+      cout << -1 << endl;
+      return 0;
     }
-    ans=max(ans,now);
+
+    ans *= a.at(i);
   }
 
-  cout<<ans<<endl;
+  cout << ans << endl;
   return 0;
 }

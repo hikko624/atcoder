@@ -1,4 +1,3 @@
-// pakencamp2019day3_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,27 +69,29 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main()
-{
-  int n,m;
-  ll ans=0;
-  cin>>n>>m;
-  vector<vector<int>> a(n, vector<int> (m));
-  rep(i,n) {
-    rep(j,m) {
-      cin>>a.at(i).at(j);
-    }
+int main() {
+  string s;
+  cin >> s;
+  int s_size = (int)s.size();
+  if (s_size == 0) {
+    cout << "YES" << endl;
+    return 0;
   }
-  for (int i=0; i<m; ++i) {
-    ll now=0;
-    for (int j=0; j<n; ++j) {
-      for (int k=j+1; k<n; ++k) {
-        now+=max(a.at(j).at(i), a.at(k).at(i));
+  rep(i, s_size) {
+    if (!(s[i] == 'c' || s[i] == 'h' || s[i] == 'o' || s[i] == 'k' ||
+          s[i] == 'u')) {
+      cout << "NO" << endl;
+      return 0;
+    }
+
+    if (s[i] == 'c') {
+      if (s[i + 1] != 'h') {
+        cout << "NO" << endl;
+        return 0;
       }
     }
-    ans=max(ans,now);
   }
 
-  cout<<ans<<endl;
+  cout<<"YES"<<endl;
   return 0;
 }

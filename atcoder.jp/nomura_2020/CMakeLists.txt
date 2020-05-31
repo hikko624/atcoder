@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.1)
+project(nomura_2020)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
+
+add_executable(nomura2020_a nomura2020_a.cpp)
+add_executable(nomura2020_b nomura2020_b.cpp)
+add_executable(nomura2020_c nomura2020_c.cpp)
+add_executable(nomura2020_d nomura2020_d.cpp)
+add_executable(nomura2020_e nomura2020_e.cpp)
+add_executable(nomura2020_f nomura2020_f.cpp)
