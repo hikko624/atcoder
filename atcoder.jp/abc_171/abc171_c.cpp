@@ -1,4 +1,4 @@
-// abc169_d
+// abc171_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,38 +70,22 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-vector<pair<long long, long long>> prime_factorize(long long n) {
-  vector<pair<long long, long long>> res;
-  for (long long p = 2; p * p <= n; ++p) {
-    if (n % p != 0)
-      continue;
-    int num = 0;
-    while (n % p == 0) {
-      ++num;
-      n /= p;
-    }
-    res.push_back(make_pair(p, num));
-  }
-  if (n != 1)
-    res.push_back(make_pair(n, 1));
-  return res;
-}
+const string str_table = "abcdefghijklmnopqrstuvwxyz";
 
 int main() {
-  ll n;
-  cin >> n;
-  ll ans = 0;
-  auto pf = prime_factorize(n);
-
-  for (auto p : pf) {
-    ll e = p.second, cur = 1, cnt = 0;
-    while (e >= cur) {
-      e -= cur;
-      cnt++;
-      cur++;
-    }
-    ans += cnt;
+  ll N;
+  cin >> N;
+  vector<char> ans;
+  while (N > 0) {
+    N--;
+    char tmp = str_table[N%26];
+    ans.push_back(tmp);
+    N /= 26;
   }
-  cout << ans << endl;
+  reverse(ans.begin(), ans.end());
+  for (auto x : ans) {
+    cout << x;
+  }
+  cout << endl;
   return 0;
 }

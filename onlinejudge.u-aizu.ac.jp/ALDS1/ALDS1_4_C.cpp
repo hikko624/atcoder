@@ -1,7 +1,7 @@
-// abc169_d
 #include <algorithm>
 #include <bitset>
 #include <complex>
+#include <cstring>
 #include <deque>
 #include <exception>
 #include <fstream>
@@ -70,38 +70,82 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-vector<pair<long long, long long>> prime_factorize(long long n) {
-  vector<pair<long long, long long>> res;
-  for (long long p = 2; p * p <= n; ++p) {
-    if (n % p != 0)
-      continue;
-    int num = 0;
-    while (n % p == 0) {
-      ++num;
-      n /= p;
-    }
-    res.push_back(make_pair(p, num));
+#define M 1000001
+#define L 14
+
+char H[M][L];
+
+int getChar(char ch) {
+  if (ch == 'A')
+    return 1;
+  else if (ch == 'C')
+    return 2;
+  else if (ch == 'G')
+    return 3;
+  else if (ch == 'T')
+    return 4;
+}
+
+/* convert a string into an integer value */
+long long getKey(char str[]) {
+  long long sum = 0, p = 1, i;
+  for (i = 0; i < strlen(str); i++) {
+    sum += p * (getChar(str[i]));
+    p *= 5;
   }
-  if (n != 1)
-    res.push_back(make_pair(n, 1));
-  return res;
+  return sum;
+}
+
+int h1(int key) { return key % M; }
+int h2(int key) { return key % M; }
+
+int find(char str[]) {
+  ll key, i, h;
+  key = getKey(str);
+  for (i = 0;; ++i) {
+    h = (h1(key) + i * h2(key)) % M;
+    if (strcmp(H[h], str) == 0)
+      return 1;
+    else if (strlen(H[h]) == 0)
+      return 0;
+  }
+}
+
+int insert(char str[]) {
+  ll key, i, h;
+  key = getKey(str);
+  for (i = 0;; ++i) {
+    h = (h1(key) + i * h2(key)) % M;
+    if (strcmp(H[h], str) == 0)
+      return 1;
+    else if (strlen(H[h]) == 0) {
+      strcpy(H[h], str);
+      return 0;
+    }
+  }
 }
 
 int main() {
-  ll n;
-  cin >> n;
-  ll ans = 0;
-  auto pf = prime_factorize(n);
+  int i, n;
+  char str[L], com[9];
+  for (i = 0; i < M; i++)
+    H[i][0] = '\0';
 
-  for (auto p : pf) {
-    ll e = p.second, cur = 1, cnt = 0;
-    while (e >= cur) {
-      e -= cur;
-      cnt++;
-      cur++;
+  scanf("%d", &n);
+
+  for (i = 0; i < n; i++) {
+    scanf("%s %s", com, str);
+
+    if (com[0] == 'i') {
+      insert(str);
+    } else {
+      if (find(str)) {
+        printf("yes\n");
+      } else {
+        printf("no\n");
+      }
     }
-    ans += cnt;
   }
-  cout << ans << endl;
+
   return 0;
 }

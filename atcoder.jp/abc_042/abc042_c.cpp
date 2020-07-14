@@ -1,4 +1,4 @@
-// abc169_d
+// abc042_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,37 +70,29 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-vector<pair<long long, long long>> prime_factorize(long long n) {
-  vector<pair<long long, long long>> res;
-  for (long long p = 2; p * p <= n; ++p) {
-    if (n % p != 0)
-      continue;
-    int num = 0;
-    while (n % p == 0) {
-      ++num;
-      n /= p;
+bool checkNum(set<int> D, int N) {
+  while (N > 0) {
+    int a = N%10;
+    for (auto x : D) {
+      if (x == a) return false;
     }
-    res.push_back(make_pair(p, num));
+    N/=10;
   }
-  if (n != 1)
-    res.push_back(make_pair(n, 1));
-  return res;
+  return true;
 }
 
 int main() {
-  ll n;
-  cin >> n;
-  ll ans = 0;
-  auto pf = prime_factorize(n);
-
-  for (auto p : pf) {
-    ll e = p.second, cur = 1, cnt = 0;
-    while (e >= cur) {
-      e -= cur;
-      cnt++;
-      cur++;
-    }
-    ans += cnt;
+  int N, K;
+  cin >> N >> K;
+  set<int> D;
+  rep(i, K) {
+    int tmp;
+    cin >> tmp;
+    D.insert(tmp);
+  }
+  int ans = inf;
+  for (int i = N; i < 100000; ++i) {
+    if (checkNum(D, i)) ans = min(ans, i);
   }
   cout << ans << endl;
   return 0;

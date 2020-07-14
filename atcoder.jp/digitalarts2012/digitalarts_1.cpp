@@ -71,15 +71,13 @@ using P = pair<int, int>;
 
 int main()
 {
-  string tmp;
-  vector<string> s;
-  int n;
+  string TMP;
+  vector<string> S;
+  int N;
 
-  while(cin>>tmp){
-    s.push_back(tmp);
+  while (cin >> TMP) {
+    S.push_back(TMP);
   }
-
-
 
   return 0;
 }

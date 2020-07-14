@@ -1,4 +1,4 @@
-// abc169_d
+// arc082_a
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -65,43 +65,26 @@ const double EPS = 1e-9;
 int inf = sizeof(int) == sizeof(long long) ? 2e18 : 1e9 + 10;
 int dx[] = {0, 1, 0, -1};
 int dy[] = {1, 0, -1, 0};
-#define rep(i, n) for (int i = 0; i < (n); ++i)
+#define REP(i, n) for (int i = 0; i < (n); ++i)
 using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-vector<pair<long long, long long>> prime_factorize(long long n) {
-  vector<pair<long long, long long>> res;
-  for (long long p = 2; p * p <= n; ++p) {
-    if (n % p != 0)
-      continue;
-    int num = 0;
-    while (n % p == 0) {
-      ++num;
-      n /= p;
-    }
-    res.push_back(make_pair(p, num));
-  }
-  if (n != 1)
-    res.push_back(make_pair(n, 1));
-  return res;
-}
-
 int main() {
-  ll n;
-  cin >> n;
-  ll ans = 0;
-  auto pf = prime_factorize(n);
+  int N, A, ans = 0;
+  cin >> N;
+  int cnt[100001];
+  REP(i, 100001) cnt[i] = 0;
+  REP(i, N) {
+    cin >> A;
+    cnt[A]++;
+  }
 
-  for (auto p : pf) {
-    ll e = p.second, cur = 1, cnt = 0;
-    while (e >= cur) {
-      e -= cur;
-      cnt++;
-      cur++;
-    }
-    ans += cnt;
+  for (int i = 1; i < 100000; ++i) {
+    int now = cnt[i - 1] + cnt[i] + cnt[i + 1];
+    ans = max(ans, now);
   }
   cout << ans << endl;
+
   return 0;
 }

@@ -1,4 +1,4 @@
-// abc169_d
+// aabc172_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,38 +70,30 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-vector<pair<long long, long long>> prime_factorize(long long n) {
-  vector<pair<long long, long long>> res;
-  for (long long p = 2; p * p <= n; ++p) {
-    if (n % p != 0)
-      continue;
-    int num = 0;
-    while (n % p == 0) {
-      ++num;
-      n /= p;
-    }
-    res.push_back(make_pair(p, num));
-  }
-  if (n != 1)
-    res.push_back(make_pair(n, 1));
-  return res;
-}
-
 int main() {
-  ll n;
-  cin >> n;
-  ll ans = 0;
-  auto pf = prime_factorize(n);
+  int N, M;
+  ll K, sum=0;
+  cin >> N >> M >> K;
+  vector<ll> A(N + 1, inf), B(M + 1, inf);
+  rep(i, N) cin >> A[i];
+  rep(i, M) cin >> B[i];
 
-  for (auto p : pf) {
-    ll e = p.second, cur = 1, cnt = 0;
-    while (e >= cur) {
-      e -= cur;
-      cnt++;
-      cur++;
+  int cntA = 0, cntB = 0;
+  while (K >= sum && cntA + cntB < N + M) {
+    if (A[cntA] <= B[cntB] && A[cntA] != inf) {
+      sum += A[cntA];
+      cntA++;
+      if (sum >= K) break;
     }
-    ans += cnt;
+
+    if (A[cntA] >= B[cntB] && B[cntB] != inf) {
+      sum += B[cntB];
+      cntB++;
+      if (sum >= K) break;
+    }
   }
-  cout << ans << endl;
+
+  if (sum > K) cout << cntA + cntB - 1<< endl;
+  else cout << cntA + cntB << endl;
   return 0;
 }

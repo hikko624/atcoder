@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.1)
+project(aabc_172)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
+
+add_executable(aabc172_a aabc172_a.cpp)
+add_executable(aabc172_b aabc172_b.cpp)
+add_executable(aabc172_c aabc172_c.cpp)
+add_executable(aabc172_d aabc172_d.cpp)
+add_executable(aabc172_e aabc172_e.cpp)
+add_executable(aabc172_f aabc172_f.cpp)

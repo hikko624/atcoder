@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.1)
+project(tokiomarine_2020)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
+
+add_executable(tokiomarine2020_a tokiomarine2020_a.cpp)
+add_executable(tokiomarine2020_b tokiomarine2020_b.cpp)
+add_executable(tokiomarine2020_c tokiomarine2020_c.cpp)
+add_executable(tokiomarine2020_d tokiomarine2020_d.cpp)
+add_executable(tokiomarine2020_e tokiomarine2020_e.cpp)
+add_executable(tokiomarine2020_f tokiomarine2020_f.cpp)

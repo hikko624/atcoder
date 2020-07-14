@@ -1,4 +1,4 @@
-// abc169_d
+// aabc172_d
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,37 +70,47 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-vector<pair<long long, long long>> prime_factorize(long long n) {
-  vector<pair<long long, long long>> res;
-  for (long long p = 2; p * p <= n; ++p) {
-    if (n % p != 0)
-      continue;
-    int num = 0;
-    while (n % p == 0) {
-      ++num;
-      n /= p;
-    }
-    res.push_back(make_pair(p, num));
+template <typename T, typename = typename std::enable_if<
+                          std::is_integral<T>::value, T>::type>
+
+vector<pair<T, ll>> prime_factorize(T n) {
+  vector<pair<T, ll>> cnts{};
+  if (n == 1) {
+    return cnts;
   }
-  if (n != 1)
-    res.push_back(make_pair(n, 1));
-  return res;
+
+  T a = 2;
+  while (n >= a * a) {
+    int cnt = 0;
+    while (n % a == 0) {
+      n /= a;
+      cnt++;
+    }
+
+    if (cnt > 0) {
+      cnts.push_back({a, cnt});
+    }
+
+    a++;
+  }
+
+  if (n != 1) {
+    cnts.push_back({n, 1});
+  }
+  return cnts;
 }
 
 int main() {
-  ll n;
-  cin >> n;
+  ll N;
+  cin >> N;
   ll ans = 0;
-  auto pf = prime_factorize(n);
-
-  for (auto p : pf) {
-    ll e = p.second, cur = 1, cnt = 0;
-    while (e >= cur) {
-      e -= cur;
-      cnt++;
-      cur++;
+  for (ll i = 1; i <= N; ++i) {
+    vector<pair<ll, ll>> prime = prime_factorize(i);
+    ll cnt = 1;
+    for (auto x : prime) {
+      cnt += x.second;
     }
-    ans += cnt;
+    ans += i * cnt;
   }
   cout << ans << endl;
   return 0;
