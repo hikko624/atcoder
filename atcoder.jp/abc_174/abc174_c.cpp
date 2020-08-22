@@ -1,4 +1,4 @@
-// abc044_c
+// abc174_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -54,14 +54,10 @@
 #include <unordered_set>
 #endif
 
-template <typename A, typename B>
-bool cmin(A &a, const B &b)
-{
+template <typename A, typename B> bool cmin(A &a, const B &b) {
   return a > b ? (a = b, true) : false;
 }
-template <typename A, typename B>
-bool cmax(A &a, const B &b)
-{
+template <typename A, typename B> bool cmax(A &a, const B &b) {
   return a < b ? (a = b, true) : false;
 }
 const double PI = acos(-1);
@@ -73,34 +69,25 @@ int dy[] = {1, 0, -1, 0};
 using namespace std;
 using ll = long long;
 using P = pair<int, int>;
-ll dp[60][60][2700] = {0};
-ll N, A;
-
 
 int main()
 {
-  cin >> N >> A;
-  vector<ll> X(N);
-  rep(i, N) cin >> X[i];
-
-  // rep(i, 60) { rep(j, 60) { rep(k, 2600) { dp[i][j][k] = 0; } } }
-  dp[0][0][0] = 1;
-  for (int i = 0; i < N; ++i)
-  {
-    for (int j = 0; j < N; ++j)
-    {
-      for (int k = 0; k < 2600; ++k)
-      {
-        dp[i + 1][j][k] = dp[i][j][k];
-        dp[i + 1][j + 1][k + X[i]] = dp[i][j + 1][k + X[i]] + dp[i][j][k];
-      }
+  int K;
+  cin>>K;
+  set<int> s;
+  ll cnt = 1;
+  ll ele = 7 % K;
+  while(s.count(ele) == 0) {
+    if (ele == 0) {
+      cout<<cnt<<endl;
+      return 0;
     }
+
+    s.insert(ele);
+    cnt++;
+    ele = (ele * 10 + 7) % K;
   }
-  ll ans = 0;
-  for (int i = 1; i < N; ++i)
-  {
-    ans += dp[N][i][i * A];
-  }
-  cout << ans << endl;
+
+  cout<<-1<<endl;
   return 0;
 }

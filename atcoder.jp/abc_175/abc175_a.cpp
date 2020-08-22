@@ -1,4 +1,4 @@
-// abc044_c
+// abc175_a
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -73,34 +73,25 @@ int dy[] = {1, 0, -1, 0};
 using namespace std;
 using ll = long long;
 using P = pair<int, int>;
-ll dp[60][60][2700] = {0};
-ll N, A;
-
 
 int main()
 {
-  cin >> N >> A;
-  vector<ll> X(N);
-  rep(i, N) cin >> X[i];
-
-  // rep(i, 60) { rep(j, 60) { rep(k, 2600) { dp[i][j][k] = 0; } } }
-  dp[0][0][0] = 1;
-  for (int i = 0; i < N; ++i)
-  {
-    for (int j = 0; j < N; ++j)
-    {
-      for (int k = 0; k < 2600; ++k)
-      {
-        dp[i + 1][j][k] = dp[i][j][k];
-        dp[i + 1][j + 1][k + X[i]] = dp[i][j + 1][k + X[i]] + dp[i][j][k];
+  string S;
+  cin >> S;
+  bool before = false;
+  int ans = 0;
+  for(int i = 0, cnt = S.size(); i < cnt; ++i) {
+    if(S[i] == 'R') {
+      if(before) {
+        ans++;
+      } else {
+        ans = 1;
       }
+      before = true;
+    } else {
+      before = false;
     }
   }
-  ll ans = 0;
-  for (int i = 1; i < N; ++i)
-  {
-    ans += dp[N][i][i * A];
-  }
-  cout << ans << endl;
-  return 0;
+
+  cout<<ans<<endl;
 }

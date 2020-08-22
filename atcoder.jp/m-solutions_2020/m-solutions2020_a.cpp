@@ -1,4 +1,4 @@
-// abc044_c
+// m-solutions2020_a
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -54,14 +54,10 @@
 #include <unordered_set>
 #endif
 
-template <typename A, typename B>
-bool cmin(A &a, const B &b)
-{
+template <typename A, typename B> bool cmin(A &a, const B &b) {
   return a > b ? (a = b, true) : false;
 }
-template <typename A, typename B>
-bool cmax(A &a, const B &b)
-{
+template <typename A, typename B> bool cmax(A &a, const B &b) {
   return a < b ? (a = b, true) : false;
 }
 const double PI = acos(-1);
@@ -73,34 +69,19 @@ int dy[] = {1, 0, -1, 0};
 using namespace std;
 using ll = long long;
 using P = pair<int, int>;
-ll dp[60][60][2700] = {0};
-ll N, A;
-
 
 int main()
 {
-  cin >> N >> A;
-  vector<ll> X(N);
-  rep(i, N) cin >> X[i];
-
-  // rep(i, 60) { rep(j, 60) { rep(k, 2600) { dp[i][j][k] = 0; } } }
-  dp[0][0][0] = 1;
-  for (int i = 0; i < N; ++i)
-  {
-    for (int j = 0; j < N; ++j)
-    {
-      for (int k = 0; k < 2600; ++k)
-      {
-        dp[i + 1][j][k] = dp[i][j][k];
-        dp[i + 1][j + 1][k + X[i]] = dp[i][j + 1][k + X[i]] + dp[i][j][k];
-      }
-    }
-  }
-  ll ans = 0;
-  for (int i = 1; i < N; ++i)
-  {
-    ans += dp[N][i][i * A];
-  }
-  cout << ans << endl;
+  int X;
+  cin >> X;
+  if (X < 600) cout << 8;
+  else if (X >= 600 && X < 800) cout << 7;
+  else if (X >= 800 && X < 1000) cout << 6;
+  else if (X >= 1000 && X < 1200) cout << 5;
+  else if (X >= 1200 && X < 1400) cout << 4;
+  else if (X >= 1400 && X < 1600) cout << 3;
+  else if (X >= 1600 && X < 1800) cout << 2;
+  else if (X >= 1800 && X < 2000) cout << 1;
+  cout<<endl;
   return 0;
 }

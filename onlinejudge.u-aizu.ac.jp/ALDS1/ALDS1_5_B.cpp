@@ -1,4 +1,3 @@
-// abc044_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -54,14 +53,10 @@
 #include <unordered_set>
 #endif
 
-template <typename A, typename B>
-bool cmin(A &a, const B &b)
-{
+template <typename A, typename B> bool cmin(A &a, const B &b) {
   return a > b ? (a = b, true) : false;
 }
-template <typename A, typename B>
-bool cmax(A &a, const B &b)
-{
+template <typename A, typename B> bool cmax(A &a, const B &b) {
   return a < b ? (a = b, true) : false;
 }
 const double PI = acos(-1);
@@ -73,34 +68,59 @@ int dy[] = {1, 0, -1, 0};
 using namespace std;
 using ll = long long;
 using P = pair<int, int>;
-ll dp[60][60][2700] = {0};
-ll N, A;
 
+#define MAX (int)5e5
+#define SENTINEL (int)2e9
 
-int main()
-{
-  cin >> N >> A;
-  vector<ll> X(N);
-  rep(i, N) cin >> X[i];
+vector<int> L(MAX/2 + 2), R(MAX/2 + 2);
+int cnt;
 
-  // rep(i, 60) { rep(j, 60) { rep(k, 2600) { dp[i][j][k] = 0; } } }
-  dp[0][0][0] = 1;
-  for (int i = 0; i < N; ++i)
-  {
-    for (int j = 0; j < N; ++j)
-    {
-      for (int k = 0; k < 2600; ++k)
-      {
-        dp[i + 1][j][k] = dp[i][j][k];
-        dp[i + 1][j + 1][k + X[i]] = dp[i][j + 1][k + X[i]] + dp[i][j][k];
-      }
-    }
+void merge(vector<int>& a, int n, int left, int mid, int right);
+void mergeSort(vector<int>& a, int n, int left, int right);
+
+int main() {
+  int N;
+  cin >> N;
+  vector<int> S(N);
+  rep(i, N) cin >> S[i];
+  mergeSort(S, N, 0, N);
+  for (int i = 0; i < N; ++i) {
+    if (i)
+      cout << " ";
+    cout << S[i];
   }
-  ll ans = 0;
-  for (int i = 1; i < N; ++i)
-  {
-    ans += dp[N][i][i * A];
-  }
-  cout << ans << endl;
+  cout << endl;
+  cout << cnt << endl;
   return 0;
+}
+
+void merge(vector<int>& a, int n, int left, int mid, int right) {
+  int n1 = mid - left;
+  int n2 = right - mid;
+
+  for (int i = 0; i < n1; ++i)
+    L[i] = a[left + i];
+  for (int i = 0; i < n2; ++i)
+    R[i] = a[mid + i];
+  L[n1] = R[n2] = SENTINEL;
+  for (int i = 0, j = 0, k = left; k < right; ++k) {
+    cnt++;
+    if (L[i] <= R[j]) {
+      a[k] = L[i];
+      ++i;
+    } else {
+      a[k] = R[j];
+      ++j;
+    }
+    // cout<<"a["<<k<<"]: "<<a[k]<<endl;
+  }
+}
+
+void mergeSort(vector<int>& a, int n, int left, int right) {
+  if (left + 1 < right) {
+    int mid = (left + right) / 2;
+    mergeSort(a, n, left, mid);
+    mergeSort(a, n, mid, right);
+    merge(a, n, left, mid, right);
+  }
 }

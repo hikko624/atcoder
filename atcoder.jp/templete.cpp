@@ -1,4 +1,3 @@
-// abc044_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -57,12 +56,12 @@
 template <typename A, typename B>
 bool cmin(A &a, const B &b)
 {
-  return a > b ? (a = b, true) : false;
+    return a > b ? (a = b, true) : false;
 }
 template <typename A, typename B>
 bool cmax(A &a, const B &b)
 {
-  return a < b ? (a = b, true) : false;
+    return a < b ? (a = b, true) : false;
 }
 const double PI = acos(-1);
 const double EPS = 1e-9;
@@ -73,34 +72,8 @@ int dy[] = {1, 0, -1, 0};
 using namespace std;
 using ll = long long;
 using P = pair<int, int>;
-ll dp[60][60][2700] = {0};
-ll N, A;
-
 
 int main()
 {
-  cin >> N >> A;
-  vector<ll> X(N);
-  rep(i, N) cin >> X[i];
-
-  // rep(i, 60) { rep(j, 60) { rep(k, 2600) { dp[i][j][k] = 0; } } }
-  dp[0][0][0] = 1;
-  for (int i = 0; i < N; ++i)
-  {
-    for (int j = 0; j < N; ++j)
-    {
-      for (int k = 0; k < 2600; ++k)
-      {
-        dp[i + 1][j][k] = dp[i][j][k];
-        dp[i + 1][j + 1][k + X[i]] = dp[i][j + 1][k + X[i]] + dp[i][j][k];
-      }
-    }
-  }
-  ll ans = 0;
-  for (int i = 1; i < N; ++i)
-  {
-    ans += dp[N][i][i * A];
-  }
-  cout << ans << endl;
-  return 0;
+    return 0;
 }

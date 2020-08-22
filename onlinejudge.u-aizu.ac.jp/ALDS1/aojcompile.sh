@@ -51,7 +51,7 @@ else
     exit 1
 fi
 
-g++-9 -std=c++14 -Wall -O2 ${filename}
+g++-10 -std=c++14 -Wall -O2 ${filename}
 # # debug
 # # g++-8 -std=c++14 -Wall -g -fsanitize=undefined -D_GLIBCXX_DEBUG ${filename}
 oj test
