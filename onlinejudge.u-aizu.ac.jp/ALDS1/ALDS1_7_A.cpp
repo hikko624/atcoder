@@ -1,4 +1,3 @@
-// abc176_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,20 +69,66 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main()
-{
-  int N;
-  cin>>N;
-  vector<int> A(N);
-  ll ans = 0;
-  rep(i, N) cin>>A[i];
-  int beforeMax = A.front();
-  for(auto x : A) {
-    if (beforeMax > x) {
-      ans += beforeMax - x;
-    }
-    beforeMax = max(beforeMax, x);
+#define MAX 100005
+#define NIL -1
+
+struct Node {
+  int parent, left, right;
+};
+
+Node T[MAX];
+int N, D[MAX];
+
+void print(int u) {
+  cout << "node " << u << ": ";
+  cout << "parent = " << T[u].parent << ", ";
+  cout << "depth = " << D[u] << ", ";
+
+  if (T[u].parent == NIL)
+    cout << "root, ";
+  else if (T[u].left == NIL)
+    cout << "leaf, ";
+  else
+    cout << "internal node, ";
+
+  cout << "[";
+
+  for (int i = 0, c = T[u].left; c != NIL; ++i, c = T[c].right) {
+    if (i) cout << ", ";
+    cout << c;
   }
-  cout<<ans<<endl;
+  cout << "]" << endl;
+}
+
+void rec(int u, int p) {
+  D[u] = p;
+  if (T[u].right != NIL) rec(T[u].right, p);
+  if (T[u].left != NIL) rec(T[u].left, p + 1);
+}
+
+int main() {
+  int N, ID, K, C, l, r;
+  cin >> N;
+  for (int i = 0; i < N; ++i) {
+    T[i].parent = T[i].left = T[i].right = NIL;
+  }
+
+  for (int i = 0; i < N; ++i) {
+    cin >> ID >> K;
+    for (int j = 0; j < K; ++j) {
+      cin >> C;
+      if (j == 0) T[ID].left = C;
+      else T[l].right = C;
+      l = C;
+      T[C].parent = ID;
+    }
+  }
+  for (int i = 0; i < N; ++i) {
+    if (T[i].parent == NIL) r = i;
+  }
+  rec(r, 0);
+
+  for (int i = 0; i < N; ++i) print(i);
+
   return 0;
 }

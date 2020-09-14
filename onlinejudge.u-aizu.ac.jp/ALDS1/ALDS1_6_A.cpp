@@ -1,7 +1,7 @@
-// abc176_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
+#include <cstdlib>
 #include <deque>
 #include <exception>
 #include <fstream>
@@ -69,21 +69,35 @@ int dy[] = {1, 0, -1, 0};
 using namespace std;
 using ll = long long;
 using P = pair<int, int>;
+#define VMAX 10000
 
-int main()
-{
+int main() {
   int N;
-  cin>>N;
-  vector<int> A(N);
-  ll ans = 0;
-  rep(i, N) cin>>A[i];
-  int beforeMax = A.front();
-  for(auto x : A) {
-    if (beforeMax > x) {
-      ans += beforeMax - x;
-    }
-    beforeMax = max(beforeMax, x);
+
+  cin >> N;
+  vector<int> A(N + 1), B(N + 1), C(VMAX + 1);
+  for (int i = 0; i <= VMAX; ++i)
+    C[i] = 0;
+
+  for (int i = 0; i < N; ++i) {
+    cin >> A[i + 1];
+    C[A[i + 1]]++;
   }
-  cout<<ans<<endl;
+
+  for (int i = 1; i <= VMAX; ++i)
+    C[i] += C[i - 1];
+
+  for (int i = 1; i <= N; ++i) {
+    B[C[A[i]]] = A[i];
+    C[A[i]]--;
+  }
+
+  for (int i = 1; i <= N; ++i) {
+    if (i > 1)
+      cout << " ";
+    cout << B[i];
+  }
+  cout << endl;
+
   return 0;
 }

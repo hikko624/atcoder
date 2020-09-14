@@ -1,4 +1,4 @@
-// abc176_c
+// abc177_a
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -72,18 +72,9 @@ using P = pair<int, int>;
 
 int main()
 {
-  int N;
-  cin>>N;
-  vector<int> A(N);
-  ll ans = 0;
-  rep(i, N) cin>>A[i];
-  int beforeMax = A.front();
-  for(auto x : A) {
-    if (beforeMax > x) {
-      ans += beforeMax - x;
-    }
-    beforeMax = max(beforeMax, x);
-  }
-  cout<<ans<<endl;
+  int D, T, S;
+  cin >> D >> T >> S;
+  if (D <= T * S) cout << "Yes" << endl;
+  else cout << "No" << endl;
   return 0;
 }

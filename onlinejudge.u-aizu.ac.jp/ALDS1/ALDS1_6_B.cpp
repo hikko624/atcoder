@@ -1,4 +1,3 @@
-// abc176_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -70,20 +69,42 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-int main()
-{
-  int N;
-  cin>>N;
-  vector<int> A(N);
-  ll ans = 0;
-  rep(i, N) cin>>A[i];
-  int beforeMax = A.front();
-  for(auto x : A) {
-    if (beforeMax > x) {
-      ans += beforeMax - x;
+#define MAX 100000
+
+int N, A[MAX];
+
+int partition(int p, int r) {
+  int x, i, j, t;
+  x = A[r];
+  i = p - 1;
+  for (j = p; j < r; ++j) {
+    if (A[j] <= x) {
+      i++;
+      t = A[i];
+      A[i] = A[j];
+      A[j] = t;
     }
-    beforeMax = max(beforeMax, x);
   }
-  cout<<ans<<endl;
+
+  t = A[i + 1];
+  A[i + 1] = A[r];
+  A[r] = t;
+  return i + 1;
+}
+
+int main() {
+
+  cin >> N;
+  rep(i, N) cin >> A[i];
+
+  int q = partition(0, N - 1);
+
+  for (int i = 0; i < N; ++i) {
+    if (i) cout<<" ";
+    if (i == q) cout<<"[";
+    cout<<A[i];
+    if (i == q) cout<<"]";
+  }
+  cout<<endl;
   return 0;
 }

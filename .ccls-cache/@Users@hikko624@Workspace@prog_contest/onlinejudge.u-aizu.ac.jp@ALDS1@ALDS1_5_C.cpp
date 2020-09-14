@@ -1,4 +1,3 @@
-// abc176_c
 #include <algorithm>
 #include <bitset>
 #include <complex>
@@ -72,18 +71,6 @@ using P = pair<int, int>;
 
 int main()
 {
-  int N;
-  cin>>N;
-  vector<int> A(N);
-  ll ans = 0;
-  rep(i, N) cin>>A[i];
-  int beforeMax = A.front();
-  for(auto x : A) {
-    if (beforeMax > x) {
-      ans += beforeMax - x;
-    }
-    beforeMax = max(beforeMax, x);
-  }
-  cout<<ans<<endl;
+  string s;
   return 0;
 }
