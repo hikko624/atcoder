@@ -69,8 +69,40 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
+#define MAX 100005
+#define NIL -1
+
+
+struct Node { int parent, left, right; };
+
+Node T[MAX];
+int N, D[MAX], H[MAX];
+
+void print(int u) {
+  cout << "node " << u << ": ";
+  cout << "parent = " << T[u].parent << ", ";
+  cout << "depth = " << D[u] << ", ";
+
+  if (T[u].parent == NIL)
+    cout << "root, ";
+  else if (T[u].left == NIL)
+    cout << "leaf, ";
+  else
+    cout << "internal node, ";
+
+  cout << "[";
+
+  for (int i = 0, c = T[u].left; c != NIL; ++i, c = T[c].right) {
+    if (i) cout << ", ";
+    cout << c;
+  }
+  cout << "]" << endl;
+}
+
+
 int main()
 {
-  string s;
+  cin >> N;
+  for (int i = 0; i < N; ++i) T[i].parent = NIL;
   return 0;
 }
