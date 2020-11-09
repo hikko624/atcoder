@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.1)
+project(HHKB_2020)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
+
+add_executable(HHKB2020_a HHKB2020_a.cpp)
+add_executable(HHKB2020_b HHKB2020_b.cpp)
+add_executable(HHKB2020_c HHKB2020_c.cpp)
+add_executable(HHKB2020_d HHKB2020_d.cpp)
+add_executable(HHKB2020_e HHKB2020_e.cpp)
+add_executable(HHKB2020_f HHKB2020_f.cpp)

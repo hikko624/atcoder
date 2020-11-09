@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <bitset>
 #include <complex>
-#include <cstdio>
 #include <deque>
 #include <exception>
 #include <fstream>
@@ -70,72 +69,35 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-#define MAX 100005
-#define NIL -1
-
-
-struct Node { int parent, left, right; };
-
-Node T[MAX];
-int N, D[MAX], H[MAX];
-
-void setDepth(int u, int d) {
-  if (u == NIL) return;
-  D[u] = d;
-  setDepth(T[u].left, d + 1);
-  setDepth(T[u].right, d + 1);
-}
-
-int setHeight(int u) {
-  int h1 = 0, h2 = 0;
-  if (T[u].left != NIL) h1 = setHeight(T[u].left) + 1;
-  if (T[u].right != NIL) h2 = setHeight(T[u].right) + 1;
-  return H[u] = (h1 > h2 ? h1 : h2);
-}
-
-int getSibling(int u) {
-  if (T[u].parent == NIL) return NIL;
-  if (T[T[u].parent].left != u && T[T[u].parent].left != NIL) return T[T[u].parent].left;
-  if (T[T[u].parent].right != u && T[T[u].parent].right != NIL) return T[T[u].parent].right;
-  return NIL;
-}
-
-void printf(int u) {
-  cout << "node " << u << ": " << "parent = " << T[u].parent << ", sibling = " << getSibling(u);
-  int deg = 0;
-  if (T[u].left != NIL) deg++;
-  if (T[u].right != NIL) deg++;
-  cout << ", degree = " << deg << ", depth = " << D[u] << ", height = " << H[u];
-
-  if (T[u].parent == NIL) {
-    cout << ", root";
-  } else if (T[u].left == NIL && T[u].right == NIL) {
-    cout << ", leaf";
-  } else {
-    cout << ", internal node";
-  }
-  cout << endl;
-}
+static const int M = 200;
 
 int main()
 {
-  int V, L, R, root = 0;
+  int N, P[M + 1], m[M + 1][M + 1];
   cin >> N;
-  for (int i = 0; i < N; ++i) T[i].parent = NIL;
 
-  for (int i = 0; i < N; ++i) {
-    cin >> V >> L >> R;
-    T[V].left = L;
-    T[V].right = R;
-    if (L != NIL) T[L].parent = V;
-    if (R != NIL) T[R].parent = V;
+  for (int i = 1; i <= N; ++i) {
+     cin >> P[i - 1] >> P[i];
   }
 
-  for (int i = 0; i < N; ++i) if (T[i].parent == NIL) root = i;
+  for (int i = 1; i <= N; ++i) m[i][i] = 0;
+  for (int l = 2; l <= N; ++l) {
+    for (int i = 1; i <= N; ++i) {
+      int j = i + l - 1;
+      m[i][j] = (1 << 21);
+      for (int k = i; k <= j - 1; ++k) {
+        m[i][j] = min(m[i][j], m[i][k] + m[k + 1][j] + P[i - 1] * P[k] * P[j]);
+      }
+    }
+  }
 
-  setDepth(root, 0);
-  setHeight(root);
+  cout << m[1][N] << endl;
+  // rep(i, N+1) {
+  //   rep(j, N+1) {
+  //     cout << m[i][j] << " ";
+  //   }
+  //   cout << endl;
+  // }
 
-  for (int i = 0; i < N; ++i) printf(i);
   return 0;
 }

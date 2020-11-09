@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.1)
+project(acl_1)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
+
+add_executable(acl1_a acl1_a.cpp)
+add_executable(acl1_b acl1_b.cpp)
+add_executable(acl1_c acl1_c.cpp)
+add_executable(acl1_d acl1_d.cpp)
+add_executable(acl1_e acl1_e.cpp)
+add_executable(acl1_f acl1_f.cpp)

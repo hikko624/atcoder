@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <bitset>
 #include <complex>
-#include <cstdio>
 #include <deque>
 #include <exception>
 #include <fstream>
@@ -70,72 +69,60 @@ using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
-#define MAX 100005
+#define MAX 10000
 #define NIL -1
 
+struct Node {
+  int parent, left, right;
+};
+struct Node T[MAX];
+int N;
 
-struct Node { int parent, left, right; };
-
-Node T[MAX];
-int N, D[MAX], H[MAX];
-
-void setDepth(int u, int d) {
+void preParse(int u) {
   if (u == NIL) return;
-  D[u] = d;
-  setDepth(T[u].left, d + 1);
-  setDepth(T[u].right, d + 1);
+  cout << " " << u;
+  preParse(T[u].left);
+  preParse(T[u].right);
 }
 
-int setHeight(int u) {
-  int h1 = 0, h2 = 0;
-  if (T[u].left != NIL) h1 = setHeight(T[u].left) + 1;
-  if (T[u].right != NIL) h2 = setHeight(T[u].right) + 1;
-  return H[u] = (h1 > h2 ? h1 : h2);
+void inParse(int u) {
+  if (u == NIL) return;
+  inParse(T[u].left);
+  cout << " " << u;
+  inParse(T[u].right);
 }
 
-int getSibling(int u) {
-  if (T[u].parent == NIL) return NIL;
-  if (T[T[u].parent].left != u && T[T[u].parent].left != NIL) return T[T[u].parent].left;
-  if (T[T[u].parent].right != u && T[T[u].parent].right != NIL) return T[T[u].parent].right;
-  return NIL;
-}
-
-void printf(int u) {
-  cout << "node " << u << ": " << "parent = " << T[u].parent << ", sibling = " << getSibling(u);
-  int deg = 0;
-  if (T[u].left != NIL) deg++;
-  if (T[u].right != NIL) deg++;
-  cout << ", degree = " << deg << ", depth = " << D[u] << ", height = " << H[u];
-
-  if (T[u].parent == NIL) {
-    cout << ", root";
-  } else if (T[u].left == NIL && T[u].right == NIL) {
-    cout << ", leaf";
-  } else {
-    cout << ", internal node";
-  }
-  cout << endl;
+void postParse(int u) {
+  if (u == NIL) return;
+  postParse(T[u].left);
+  postParse(T[u].right);
+  cout << " " << u;
 }
 
 int main()
 {
-  int V, L, R, root = 0;
+  int ID, L, R, root;
   cin >> N;
   for (int i = 0; i < N; ++i) T[i].parent = NIL;
-
   for (int i = 0; i < N; ++i) {
-    cin >> V >> L >> R;
-    T[V].left = L;
-    T[V].right = R;
-    if (L != NIL) T[L].parent = V;
-    if (R != NIL) T[R].parent = V;
+    cin >> ID >> L >> R;
+    T[ID].left = L;
+    T[ID].right = R;
+    if (L != NIL) T[L].parent = ID;
+    if (R != NIL) T[R].parent = ID;
   }
 
   for (int i = 0; i < N; ++i) if (T[i].parent == NIL) root = i;
 
-  setDepth(root, 0);
-  setHeight(root);
+  cout << "Preorder" << endl;
+  preParse(root);
+  cout << endl;
+  cout << "Inorder" << endl;
+  inParse(root);
+  cout << endl;
+  cout << "Postorder" << endl;
+  postParse(root);
+  cout << endl;
 
-  for (int i = 0; i < N; ++i) printf(i);
   return 0;
 }
