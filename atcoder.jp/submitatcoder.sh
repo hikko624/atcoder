@@ -15,8 +15,8 @@ if [ -e test ]
 then
     rm -rf test
 fi
-oj dl https://atcoder.jp/contests/${filename%_*}/tasks/${filename%.*}
-oj test
+~/Library/Python/3.9/bin/oj dl https://atcoder.jp/contests/${filename%_*}/tasks/${filename%.*}
+~/Library/Python/3.9/bin/oj test
 # echo "Could i submit this code?[Y/n]"
 # read str
 # case "${str}" in
@@ -30,5 +30,5 @@ oj test
 #     *)
 #         echo "This input is undefined";;
 # esac
-oj submit https://atcoder.jp/contests/${filename%_*}/tasks/${filename%.*} ${filename} --language c++14
+~/Library/Python/3.9/bin/oj submit https://atcoder.jp/contests/${filename%_*}/tasks/${filename%.*} ${filename} --language c++14
 rm a.out
