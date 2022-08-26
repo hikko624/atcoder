@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # https://pyteyon.hatenablog.com/entry/2018/08/25/202908
+# python3 atcoder_auto.py
+
 import os
+import sys
 import shutil
 
 def make_contest_dir(contest_name, contest_num, question):
@@ -54,7 +57,7 @@ def make_contest_dir(contest_name, contest_num, question):
         for i in os.listdir(contest_path):
             print(i)
 
-
 if __name__ == '__main__':
+    print (sys.version)
     name, num, ques = input("Enter 'contest_name' 'contest_num' 'question' separated by space.\n>>> ").split()
     make_contest_dir(name, num, ques)

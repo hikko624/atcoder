@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.1)
+project(abc_212)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
+
+add_executable(abc212_a abc212_a.cpp)
+add_executable(abc212_b abc212_b.cpp)
+add_executable(abc212_c abc212_c.cpp)
+add_executable(abc212_d abc212_d.cpp)
+add_executable(abc212_e abc212_e.cpp)
+add_executable(abc212_f abc212_f.cpp)
+add_executable(abc212_g abc212_g.cpp)
+add_executable(abc212_h abc212_h.cpp)
